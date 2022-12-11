@@ -1,4 +1,4 @@
-alias EctoAssocQuery.{Repo, Artist, MusicList, Music, User, PrayList, PrayListMusic}
+alias EctoAssocQuery.{Repo, Artist, MusicList, Music, User, PrayList, PrayListMusic, ActiveUser, DeleteUser}
 
 csv_data =
   "day12_music.csv"
@@ -58,6 +58,8 @@ user =
   |> User.changeset(%{name: "taro", email: "taro@sample.com"})
   |> Repo.insert!()
 
+Repo.insert(%ActiveUser{user: user})
+
 for index <- 1..2 do
   pray_list =
     %PrayList{user: user}
@@ -81,3 +83,5 @@ end
 %User{}
 |> User.changeset(%{name: "hanako", email: "hanako@sample.com"})
 |> Repo.insert!()
+
+Repo.insert(%DeleteUser{user: user})
