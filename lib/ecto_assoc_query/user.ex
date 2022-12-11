@@ -10,6 +10,8 @@ defmodule EctoAssocQuery.User do
     has_many :musics, through: [:pray_list_musics, :music]
     has_many :music_lists, through: [:musics, :music_list]
     has_many :artists, through: [:music_lists, :artist]
+    has_one :active_user, EctoAssocQuery.ActiveUser
+    has_one :delete_user, EctoAssocQuery.DeleteUser
   end
 
   def changeset(user, params) do
