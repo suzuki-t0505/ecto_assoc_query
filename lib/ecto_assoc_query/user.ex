@@ -2,6 +2,7 @@ defmodule EctoAssocQuery.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Inspect, only: [:id, :name, :musics]}
   schema "users" do
     field :name, :string
     field :email, :string
