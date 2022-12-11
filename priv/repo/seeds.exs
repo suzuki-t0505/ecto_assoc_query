@@ -77,3 +77,7 @@ for index <- 1..2 do
     |> Repo.insert!()
   end
 end
+
+%User{}
+|> User.changeset(%{name: "hanako", email: "hanako@sample.com"})
+|> Repo.insert!()
