@@ -2,7 +2,6 @@ defmodule EctoAssocQuery.Music do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @derive {Inspect, only: [:id, :name]}
   schema "musics" do
     field :name, :string
     belongs_to :music_list, EctoAssocQuery.MusicList

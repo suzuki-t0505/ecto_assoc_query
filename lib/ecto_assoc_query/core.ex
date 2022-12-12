@@ -48,17 +48,21 @@ defmodule EctoAssocQuery.Core do
     Repo.one(query)
   end
 
-  # def test(user_id, value) do
-  #   pattern = "%#{value}%"
+  def search_musics(music_list_id, value) do
+    pattern = "%#{value}%"
 
+    sub_query =
+      from(m in Music,
+        where: like(m.name, ^pattern)
+      )
 
+    query =
+      from(m in Music,
+        join: ms in subquery(sub_query),
+        on: m.id == ms.id,
+        where: m.music_list_id == ^music_list_id
+      )
 
-  #   query =
-  #     from(m in Music,
-  #       where: like(m.name, ^pattern),
-
-  #     )
-
-  #   Repo.all(query)
-  # end
+    Repo.all(query)
+  end
 end
